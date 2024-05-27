@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 export interface Blog {
   title: string;
@@ -13,7 +15,7 @@ export interface Blog {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,MatTooltipModule ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
