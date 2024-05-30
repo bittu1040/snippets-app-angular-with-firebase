@@ -11,11 +11,11 @@
     @for (snippet of filteredTopics; track snippet) {
     <div class="col-sm-6 col-md-6 col-lg-6 mb-3 mb-sm-0 p-2">
         <div class="card">
-            <img src="{{ snippet.imageURL }}" class="card-img-top" alt="..." max-width="100%">
+            <img src="{{ snippet.download_url }}" class="card-img-top" alt="..." max-width="100%">
             <div class="card-body d-flex justify-content-between align-items-center">
 
                 <div class="d-flex gap-2">
-                    <h3 class="card-title mb-0">{{ snippet.title }}</h3>
+                    <h3 class="card-title mb-0">{{ snippet.author }}</h3>
                     <button matTooltip="Like" class="border border-secondary-subtle p-2 rounded-circle">
                         <i class="bi bi-arrow-up"></i>
                     </button>
