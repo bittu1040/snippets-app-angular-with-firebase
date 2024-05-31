@@ -12,7 +12,7 @@ export class DataService {
 
 
   getImage():Observable<Image[]>{
-    return this.http.get<Image[]>("https://picsum.photos/v2/list").pipe(
+    return this.http.get<Image[]>("https://picsum.photosnn/v2/list").pipe(
       catchError(this.handleError)
     )
   }
@@ -21,15 +21,23 @@ export class DataService {
   // simulate client side and server side error (TODO)
 
 
-  private handleError(error: HttpErrorResponse){
-    let errorMessage = 'Unknown error!';
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = {
+      message: 'Unknown error!',
+      status: error.status,
+      statusText: error.statusText
+    };
     if (error.error instanceof ErrorEvent) {
       // Client-side errors
-      errorMessage = `Error: ${error.error.message}`;
+      errorMessage.message = `Client-side error: ${error.error.message}`;
     } else {
       // Server-side errors
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      if (error.status === 0) {
+        errorMessage.message = `Network error: Unable to reach the server. Please check your internet connection or try again later.`;
+      } else {
+        errorMessage.message = `Error Code: ${error.status} - Message: ${error.message}`;
+      }
     }
-    return throwError(() => errorMessage)
+    return throwError(() => errorMessage);
   }
 }
