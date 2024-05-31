@@ -11,26 +11,38 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class UploadSnippetsComponent {
 
-  selectedFile!: File;
+  selectedFile?: File;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient) { }
 
-  }
-  onFileChanged(event:any) {
-    this.selectedFile = event.target.files[0];
+  onFileChanged(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      this.selectedFile = inputElement.files[0];
+    } else {
+      this.selectedFile = undefined;
+    }
   }
 
   onUpload() {
+    if (!this.selectedFile) {
+      console.error('No file selected');
+      return;
+    }
+
     const uploadData = new FormData();
     uploadData.append('file', this.selectedFile, this.selectedFile.name);
 
     this.http.post('your-server-endpoint', uploadData, { reportProgress: true })
-      .subscribe(response => {
-        console.log(response);
-        // Handle successful upload response
-      }, error => {
-        console.error(error);
-        // Handle upload error
+      .subscribe({
+        next: response => {
+          console.log(response);
+          // Handle successful upload response
+        },
+        error: err => {
+          console.error(err);
+          // Handle upload error
+        }
       });
   }
 }
