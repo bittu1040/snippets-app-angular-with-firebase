@@ -2,7 +2,10 @@
     <div class="row border p-5 rounded flex justify-content-center">
             <div class="col-lg-12" style="max-width: 50%;">
                 <label class="form-label" for="customFile">Upload Snippets</label>
-                <input type="file" class="form-control" id="customFile" />
+                <input type="file" class="form-control" id="customFile" (change)="onFileChanged($event)" />
+                <div class="pt-2">
+                <button mat-raised-button (click)="onUpload()">Upload</button>
+                </div>
             </div>
     </div>
 </div>
