@@ -4,11 +4,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { snippets } from '../../shared/snippets';
 import { DataService } from '../../services/data.service';
 import { JsonPipe } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule,MatTooltipModule, JsonPipe ],
+  imports: [FormsModule,MatTooltipModule, JsonPipe,NgOptimizedImage ],
   providers: [DataService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
