@@ -12,7 +12,7 @@ export class DataService {
 
 
   getImage():Observable<Image[]>{
-    return this.http.get<Image[]>("https://picsum.photosnn/v2/list").pipe(
+    return this.http.get<Image[]>("https://picsum.photos/v2/list").pipe(
       catchError(this.handleError)
     )
   }
