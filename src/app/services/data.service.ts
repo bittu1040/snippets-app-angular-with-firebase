@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, take, throwError } from 'rxjs';
 import { Image } from '../models/image.model';
 
 @Injectable({
@@ -12,7 +12,8 @@ export class DataService {
 
 
   getImage():Observable<Image[]>{
-    return this.http.get<Image[]>("https://picsum.photos/v2/list").pipe(
+    return this.http.get<Image[]>("https://picsum.photos/v2/list").pipe( 
+      map(images => images.slice(0, 10)),
       catchError(this.handleError)
     )
   }
