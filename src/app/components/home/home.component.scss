@@ -29,3 +29,14 @@
   text-align: left;
   padding: 4px 0;
 }
+
+
+@media (max-width: 576px) {
+  .align-items-center {
+    align-items: flex-start !important; /* Change alignment for mobile screens */
+  }
+  
+  .flex-column {
+    flex-direction: row !important; /* Change direction for mobile screens */
+  }
+}
