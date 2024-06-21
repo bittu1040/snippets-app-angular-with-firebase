@@ -12,12 +12,13 @@ export class DataService {
 
 
   getImage():Observable<Image[]>{
-    return this.http.get<Image[]>("https://picsum.photos/v2/list").pipe( 
-      map(images => images.slice(0, 10)),
+    return this.http.get<Image[]>("https://backend-node-kappa.vercel.app/get_image_info").pipe( 
+      map(images => images.slice(0, 100)),
       catchError(this.handleError)
     )
   }
 
+  // https://picsum.photos/v2/list
 
   // simulate client side and server side error (TODO)
 
