@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.data.getImage().subscribe({
       next:(data:any)=>{
-        this.snippets= data;
+        this.snippets= data.map((image:any) => ({ ...image, isLoading: true }));
         this.error= null;
       }, 
       error:(err)=>{
@@ -46,5 +46,6 @@ export class HomeComponent implements OnInit {
 
 onImageLoad(snippet:any){
   console.log("image loaded", snippet)
+  snippet.isLoading = false
 }
 }
