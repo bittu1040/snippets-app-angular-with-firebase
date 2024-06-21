@@ -1,56 +1,61 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="mb-3 d-flex">
-                <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Promises">
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mb-3 d-flex">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Promises">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    @if (error ) {
+    <div class="col-12">
+      <div class="error">
+        <div>Error message: {{error.message}}</div>
+        <div>Error status: {{error.status}}</div>
+        <div>Error statusText: {{error.statusText}}</div>
+      </div>
+    </div>
+    }
+    @else{
+    @for (snippet of filteredTopics; track snippet) {
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 p-2">
+      <div class="card">
+        <div class="card-img-top-container">
+          <img [ngSrc]="snippet.download_url" alt="Image" class="card-img-top" height="300" width="100" priority (load)="onImageLoad(snippet)">
+          @if (true) {
+          <div class="spinner-container">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          }
         </div>
+        <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
+          <div class="d-flex flex-column flex-sm-row align-items-start align-items-md-center gap-2 mb-2 mb-md-0">
+            <h3 class="card-title mb-0">{{ snippet.author }}</h3>
+            <div class="d-flex gap-2">
+              <button matTooltip="Like" class="btn btn-outline-secondary p-2 rounded-circle">
+                <i class="bi bi-arrow-up"></i>
+              </button>
+              <button matTooltip="Dislike" class="btn btn-outline-secondary p-2 rounded-circle">
+                <i class="bi bi-arrow-down"></i>
+              </button>
+            </div>
+          </div>
+          <button matTooltip="Download" class="btn btn-outline-secondary p-2 rounded">
+            <i class="bi bi-box-arrow-down"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="row">
 
-        @if (error ) {
-        <div class="col-12">
-            <div class="error">
-                <div>Error message: {{error.message}}</div>
-                <div>Error status: {{error.status}}</div>
-                <div>Error statusText: {{error.statusText}}</div>
-            </div>
-        </div>
-        }
-        @else{
-        @for (snippet of filteredTopics; track snippet) {
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 p-2">
-                <div class="card">
-                  <div class="card-img-top-container">
-                    <img [ngSrc]="snippet.download_url" alt="Image" class="card-img-top" height="300" width="100" priority>
-                </div>
-                  <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
-                    <div class="d-flex flex-column flex-sm-row align-items-start align-items-md-center gap-2 mb-2 mb-md-0">
-                      <h3 class="card-title mb-0">{{ snippet.author }}</h3>
-                      <div class="d-flex gap-2">
-                        <button matTooltip="Like" class="btn btn-outline-secondary p-2 rounded-circle">
-                          <i class="bi bi-arrow-up"></i>
-                        </button>
-                        <button matTooltip="Dislike" class="btn btn-outline-secondary p-2 rounded-circle">
-                          <i class="bi bi-arrow-down"></i>
-                        </button>
-                      </div>
-                    </div>
-                    <button matTooltip="Download" class="btn btn-outline-secondary p-2 rounded">
-                      <i class="bi bi-box-arrow-down"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              
-            
-        }
-        @empty {
-        Empty list of users
-        }
-        }
-    </div>
+    }
+    @empty {
+    Empty list of users
+    }
+    }
+  </div>
 
 </div>
 

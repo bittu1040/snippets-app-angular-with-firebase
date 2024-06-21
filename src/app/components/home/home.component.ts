@@ -5,11 +5,13 @@ import { snippets } from '../../shared/snippets';
 import { DataService } from '../../services/data.service';
 import { JsonPipe } from '@angular/common';
 import { NgOptimizedImage } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule,MatTooltipModule, JsonPipe,NgOptimizedImage ],
+  imports: [FormsModule,MatTooltipModule, JsonPipe,NgOptimizedImage, MatProgressSpinnerModule, MatProgressBarModule ],
   providers: [DataService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -40,5 +42,9 @@ export class HomeComponent implements OnInit {
 
   get filteredTopics() {
     return this.snippets.filter((topic:any) => topic.author.toLowerCase().includes(this.searchTerm.toLowerCase()));
+}
+
+onImageLoad(snippet:any){
+  console.log("image loaded", snippet)
 }
 }
