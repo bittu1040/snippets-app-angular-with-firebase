@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,10 +15,13 @@ import {MatButtonModule} from '@angular/material/button';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'snippets-app';
   constructor(public _authService: AuthService, public dialog: MatDialog) { }
 
+
+  ngOnInit(): void {
+  }
 
   openDialog() {
     this.dialog.open(LogoutDialogComponent);
