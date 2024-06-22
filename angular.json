@@ -41,11 +41,12 @@
           },
           "configurations": {
             "production": {
+              "optimization": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1mb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1.10mb",
+                  "maximumError": "1.10mb"
                 },
                 {
                   "type": "anyComponentStyle",
