@@ -8,9 +8,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="navbar-nav ms-auto mb-2 mb-sm-0">
-      <a class="nav-link" routerLink="/login">Login</a>
-      <a class="nav-link" routerLink="/signup">Signup</a>
-      <a class="nav-link" (click)="openDialog()">Logout</a>
+      @if (!isLoggedIn) {
+        <a class="nav-link" routerLink="/login">Login</a>
+      }
+      @if (!isLoggedIn) {
+        <a class="nav-link" routerLink="/signup">Signup</a>
+      }
+      @if (isLoggedIn) {
+        <a class="nav-link" (click)="openDialog()">Logout</a>
+      }
     </div>
   </div>
 </nav>

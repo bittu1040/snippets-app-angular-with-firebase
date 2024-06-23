@@ -6,7 +6,9 @@ import {MatDialogModule,
   MatDialogClose,
   MatDialogContent,
   MatDialogTitle,
+  MatDialogRef,
 } from '@angular/material/dialog';
+import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({
   selector: 'app-logout-dialog',
@@ -17,4 +19,15 @@ import {MatDialogModule,
 })
 export class LogoutDialogComponent {
 
+  constructor(
+    private firebaseAuthService: FirebaseAuthService,
+    private dialogRef: MatDialogRef<LogoutDialogComponent>
+  ) {}
+
+
+  confirmLogout() {
+    this.firebaseAuthService.logout().then(() => {
+      this.dialogRef.close();
+    });
+  }
 }

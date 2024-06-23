@@ -17,14 +17,21 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class AppComponent implements OnInit {
   title = 'snippets-app';
+  isLoggedIn: boolean = false
   constructor(public _authService: AuthService, public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   }
 
   openDialog() {
-    this.dialog.open(LogoutDialogComponent);
+   const dialogRef= this.dialog.open(LogoutDialogComponent);
+   dialogRef.afterClosed().subscribe(result => {
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'false';
+  });
   }
+
+
 
 }
