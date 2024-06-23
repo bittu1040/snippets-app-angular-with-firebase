@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -9,12 +9,16 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './upload-snippets.component.html',
   styleUrl: './upload-snippets.component.scss'
 })
-export class UploadSnippetsComponent {
+export class UploadSnippetsComponent implements OnInit {
 
   selectedFile?: File;
 
   constructor(private http: HttpClient) { }
 
+
+  ngOnInit(): void {
+    
+  }
   onFileChanged(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
