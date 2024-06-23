@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
       .catch(error => {
         console.log(error)
       });
-      alert('Login successful!');
       // Reset form after successful submission (optional)
       this.loginForm.reset();
     }
