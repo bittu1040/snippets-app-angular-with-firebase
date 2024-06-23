@@ -48,6 +48,6 @@ export class HomeComponent implements OnInit {
     console.log("image loaded", snippet)
     setTimeout(() => {
       snippet.isLoading = false
-    }, 1000);
+    }, 500);
   }
 }

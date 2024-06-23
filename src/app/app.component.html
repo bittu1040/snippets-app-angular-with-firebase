@@ -8,6 +8,8 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="navbar-nav ms-auto mb-2 mb-sm-0">
+      <a class="nav-link" href="https://github.com/bittu1040/snippets-app" target="_blank">Contribute <i class="bi bi-github"></i></a>
+
       @if (!isLoggedIn) {
         <a class="nav-link" routerLink="/login">Login</a>
       }
@@ -28,6 +30,7 @@
 
 
 <!-- 
+  Frontend:
   1. try for simple loader of api call till the response comes.
   2. spinner for loading time of image
   3. login/signup feature (JWT token with firebase)
@@ -37,4 +40,9 @@
   6. unit testing
   7. Detect if user is in top of the page or bottom of the page using hostlistener (scroll event )
   8. Print username in top after successful loggedin
+
+
+  Backend:
+  1. to upload new image - this will be available for loggedin user
+  2. loggedin user can do like/dislike image
  -->
