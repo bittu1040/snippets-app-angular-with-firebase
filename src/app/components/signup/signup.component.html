@@ -11,3 +11,9 @@
         <button type="submit" class="btn btn-primary mt-2" [disabled]="signupForm.invalid">Sign up</button>
       </form>
 </div>
+
+@if (signupError) {
+    <div class="form-container mt-2 error-message">
+         <div>{{signupError}}</div>
+    </div>
+}

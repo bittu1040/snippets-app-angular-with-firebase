@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   signupForm: FormGroup = new FormGroup({});
+  signupError: string = '';
 
   constructor( private fb: FormBuilder, private firebaseAuth: FirebaseAuthService, private router: Router) { }
 
@@ -26,17 +27,36 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       console.log('Email:', this.signupForm.value.email);
       console.log('Password:', this.signupForm.value.password);
-      // Simulate login logic (replace with actual authentication)
       this.firebaseAuth.register(this.signupForm.value.email, this.signupForm.value.password)
       .then((data) => {
         console.log("register success", data)
         this.router.navigate(['/login']);
       })
       .catch(error => {
-        console.log(error)
+        console.log(error);
+        this.signupError = this.getErrorMessage(error.code);
       });
-      // Reset form after successful submission (optional)
-      this.signupForm.reset();
+    }
+  }
+
+  getErrorMessage(errorCode: string): string {
+    switch (errorCode) {
+      case 'auth/invalid-email':
+        return 'Invalid email address format.';
+      case 'auth/user-disabled':
+        return 'This user has been disabled.';
+      case 'auth/user-not-found':
+        return 'User not found.';
+      case 'auth/wrong-password':
+        return 'Incorrect password.';
+      case 'auth/email-already-in-use':
+        return 'This email is already in use.';
+      case 'auth/weak-password':
+        return 'The password is too weak.';
+      case 'auth/invalid-credential':
+        return 'Invalid credentials.';
+      default:
+        return 'An unknown error occurred. Please try again.';
     }
   }
 
