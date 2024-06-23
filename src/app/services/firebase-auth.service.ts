@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ export class FirebaseAuthService {
 
 
   currentUser: any; // To store the currently logged-in user
+  navButtons= new BehaviorSubject(false)
 
   constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
@@ -28,7 +30,7 @@ export class FirebaseAuthService {
     return this.afAuth.signOut(); 
   }
 
-  isLoggedIn() {
-    return this.currentUser !== null;
-  }
+  // isLoggedIn() {
+  //   return this.currentUser !== null;
+  // }
 }

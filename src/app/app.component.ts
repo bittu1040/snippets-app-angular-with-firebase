@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
 import {MatButtonModule} from '@angular/material/button';
+import { FirebaseAuthService } from './services/firebase-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,14 @@ import {MatButtonModule} from '@angular/material/button';
 export class AppComponent implements OnInit {
   title = 'snippets-app';
   isLoggedIn: boolean = false
-  constructor(public _authService: AuthService, public dialog: MatDialog) { }
+  constructor(public _authService: AuthService, private firebaseAuthService: FirebaseAuthService, public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
     this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    this.firebaseAuthService.navButtons.subscribe(res => {
+      this.isLoggedIn = res;
+    })
   }
 
   openDialog() {

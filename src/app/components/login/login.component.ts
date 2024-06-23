@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         this.loginError= '';
         this.router.navigate(['/home']);
         localStorage.setItem('isLoggedIn', 'true');
+        this.firebaseAuth.navButtons.next(true);
       })
       .catch(error => {
         console.log(error.code)
