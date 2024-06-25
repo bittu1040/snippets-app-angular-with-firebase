@@ -5,7 +5,7 @@ import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { FirebaseAuthService } from './services/firebase-auth.service';
 
 @Component({
@@ -23,17 +23,20 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    this.firebaseAuthService.navButtons.subscribe(res => {
+    this.firebaseAuthService.isLoggedIn.subscribe(res => {
       this.isLoggedIn = res;
     })
   }
 
   openDialog() {
-   const dialogRef= this.dialog.open(LogoutDialogComponent);
-   dialogRef.afterClosed().subscribe(result => {
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'false';
-  });
+    const dialogRef = this.dialog.open(LogoutDialogComponent,
+      {
+        width: '350px',
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 
 

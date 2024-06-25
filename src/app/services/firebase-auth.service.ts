@@ -9,7 +9,7 @@ export class FirebaseAuthService {
 
 
   currentUser: any; // To store the currently logged-in user
-  navButtons= new BehaviorSubject(false)
+  isLoggedIn= new BehaviorSubject(false)
 
   constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {

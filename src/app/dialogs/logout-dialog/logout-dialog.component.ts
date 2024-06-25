@@ -30,6 +30,7 @@ export class LogoutDialogComponent {
     this.firebaseAuthService.logout().then(() => {
       this.dialogRef.close();
       this.router.navigate(['/home']);
+      this.firebaseAuthService.isLoggedIn.next(false);
     });
   }
 }
