@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, take, throwError } from 'rxjs';
 import { Image } from '../models/image.model';
@@ -12,7 +12,11 @@ export class DataService {
 
 
   getImage():Observable<Image[]>{
-    return this.http.get<Image[]>("https://backend-node-kappa.vercel.app/get_image_info").pipe( 
+    const header= new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'my-auth-token'
+    });
+    return this.http.get<Image[]>("https://backend-node-kappa.vercel.app/get_image_info", {headers: header}).pipe( 
       map(images => images.slice(0, 100)),
       catchError(this.handleError)
     )
