@@ -11,7 +11,7 @@ import { authInterceptor } from './interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes), provideAnimationsAsync(), provideHttpClient(),
+    provideRouter(routes), provideAnimationsAsync(),
     importProvidersFrom(AngularFireModule.initializeApp(environment.firebaseConfig)),
     provideHttpClient(withInterceptors([authInterceptor])),
   ]
