@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +10,7 @@ import { FirebaseAuthService } from './services/firebase-auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HttpClientModule, RouterLink, RouterLinkActive, MatButtonModule],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, MatButtonModule],
   providers: [AuthService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
