@@ -7,12 +7,13 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat'; // Compatibility import
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { loggerInterceptor } from './interceptors/logger.interceptor';
  
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), provideAnimationsAsync(),
     importProvidersFrom(AngularFireModule.initializeApp(environment.firebaseConfig)),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, loggerInterceptor])),
   ]
 };
