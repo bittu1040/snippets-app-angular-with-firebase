@@ -3,10 +3,29 @@
         <div class="form-group">
           <label for="email">Email:</label>
           <input type="email" class="form-control" id="email" formControlName="email" required>
+          @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
+            <div class="text-danger mt-2">
+              Valid email is required.
+            </div>
+          }
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
           <input type="password" class="form-control" id="password" formControlName="password" required>
+          @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
+            <div class="text-danger mt-2">
+            Password should be at least 6 characters.
+            </div>
+          }
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm password:</label>
+          <input type="password" class="form-control" id="confirm-password" formControlName="confirmPassword" required>
+          @if (signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched) {
+            <div class="text-danger mt-2">
+               Passwords do not match.
+            </div>
+          }
         </div>
         <button type="submit" class="btn btn-primary mt-2" [disabled]="signupForm.invalid">Sign up</button>
       </form>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { Router } from '@angular/router';
 
@@ -18,9 +18,22 @@ export class SignupComponent {
 
   ngOnInit(){
     this.signupForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    }, 
+    { validator: this.passwordMatchValidator }
+  );
+  }
+
+
+  passwordMatchValidator(control: AbstractControl) {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirmPassword');
+    if (password?.value !== confirmPassword?.value) {
+      return { 'mismatch': true };
+    }
+    return null;
   }
 
   onSubmit() {
