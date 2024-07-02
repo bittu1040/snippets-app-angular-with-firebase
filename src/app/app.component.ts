@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FirebaseAuthService } from './services/firebase-auth.service';
+import { IssueListComponent } from './dialogs/issue-list/issue-list.component';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,16 @@ export class AppComponent implements OnInit {
     })
   }
 
+
   openDialog() {
+    const dialogRef = this.dialog.open(IssueListComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  
+  openLogoutDialog() {
     const dialogRef = this.dialog.open(LogoutDialogComponent,
       {
         width: '350px',

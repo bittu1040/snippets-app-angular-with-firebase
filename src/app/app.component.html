@@ -8,6 +8,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="navbar-nav ms-auto mb-2 mb-sm-0">
+      <a class="nav-link" (click)="openDialog()" >Issues <i class="bi bi-info-circle"></i></a>
       <a class="nav-link" href="https://github.com/bittu1040/snippets-app" target="_blank">Contribute <i class="bi bi-github"></i></a>
 
       @if (!isLoggedIn) {
@@ -17,7 +18,7 @@
         <a class="nav-link" routerLink="/signup">Signup</a>
       }
       @if (isLoggedIn) {
-        <a class="nav-link" (click)="openDialog()">Logout</a>
+        <a class="nav-link" (click)="openLogoutDialog()">Logout</a>
       }
     </div>
   </div>
@@ -49,4 +50,6 @@
   Backend:
   1. to upload new image - this will be available for loggedin user
   2. loggedin user can do like/dislike image
+  3. Download image
+  4. Inlarge image on click image
  -->
