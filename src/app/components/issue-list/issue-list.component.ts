@@ -20,6 +20,8 @@ export class IssueListComponent implements OnInit{
     this.features = Issues.filter((issue) => issue.issueType === "Feature");
     this.bugs = Issues.filter((issue) => issue.issueType === "Bug");
   }
-  colors = ["Red", "Blue", "White"];
+  openPostIssueDialog() {
+    // TODO
+  }
 
 }
