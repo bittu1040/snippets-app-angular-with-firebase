@@ -25,6 +25,11 @@ export class IssueListComponent implements OnInit{
   }
   openAddIssueDialog() {
     const dialogRef = this.dialog.open(AddIssuesComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // console.log(result)
+      }
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogActions } from '@angular/material/dialog';
+import { MatDialogActions, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 
@@ -16,7 +16,7 @@ export class AddIssuesComponent {
 
   addIssueForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<AddIssuesComponent>){
 
   }
 
@@ -30,7 +30,10 @@ export class AddIssuesComponent {
   }
 
   onSubmit() {
-    console.log(this.addIssueForm.value);
+    if (this.addIssueForm.valid) {
+      console.log(this.addIssueForm.value);
+      this.dialogRef.close(this.addIssueForm.value);
+    }
   }
 
 
