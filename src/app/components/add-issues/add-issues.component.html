@@ -1,1 +1,40 @@
-<p>add-issues works!</p>
+<form [formGroup]="addIssueForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <mat-label>User Name</mat-label>
+      <input matInput id="userName" formControlName="userName" />
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Issue Type</mat-label>
+      <mat-select id="issueType" formControlName="issueType">
+        <mat-option value="">Select Issue Type</mat-option>
+        <mat-option value="Feature">Feature</mat-option>
+        <mat-option value="Bug">Bug</mat-option>
+      </mat-select>
+      @if (addIssueForm.get('issueType')?.invalid && addIssueForm.get('issueType')?.touched) {
+      <mat-error>
+        Issue Type is required.
+      </mat-error>
+    }
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Issue</mat-label>
+      <input matInput id="issue" formControlName="issue" />
+      @if (addIssueForm.get('issue')?.invalid && addIssueForm.get('issue')?.touched) {
+        <mat-error>
+        Issue is required.
+      </mat-error>
+    }
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Issue Description</mat-label>
+      <textarea matInput id="issueDescription" formControlName="issueDescription"></textarea>
+    </mat-form-field>
+    <mat-dialog-actions>
+        <button mat-raised-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="addIssueForm.invalid">Submit</button>
+    </mat-dialog-actions>
+  </form>
+  
