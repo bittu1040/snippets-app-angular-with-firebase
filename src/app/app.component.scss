@@ -1,10 +1,9 @@
-.custom-navbar .navbar-nav .nav-link,
-.custom-navbar .navbar-brand {
-  font-size: 1.15rem; /* Adjust the size as needed */
-}
+
 
 .nav-link {
   cursor: pointer;
+  color: white;
+  border-radius: 10px;
 }
 
 .navbar-brand, .nav-link {
@@ -26,6 +25,10 @@
 }
 
 .navbar .navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+}
+
+.navbar .navbar-brand{
   padding: 0.5rem 1rem;
 }
 

@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FirebaseAuthService } from './services/firebase-auth.service';
-import { IssueListComponent } from './dialogs/issue-list/issue-list.component';
+import { IssueListComponent } from './components/issue-list/issue-list.component';
 
 @Component({
   selector: 'app-root',

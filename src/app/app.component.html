@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary px-3">
-  <a class="navbar-brand fw-bold" routerLink="/home">Home</a>
-  <a class="navbar-brand fw-bold" routerLink="/upload-snippets">Upload Snippets</a>
+  <div class="navbar-brand fw-bold nav-link" routerLink="/home">Home</div>
+  <div class="navbar-brand fw-bold nav-link" routerLink="/upload-snippets">Upload Snippets</div>
 
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,17 +8,17 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="navbar-nav ms-auto mb-2 mb-sm-0">
-      <a class="nav-link" (click)="openDialog()" >Issues <i class="bi bi-info-circle"></i></a>
-      <a class="nav-link" href="https://github.com/bittu1040/snippets-app" target="_blank">Contribute <i class="bi bi-github"></i></a>
+      <div class="nav-link" routerLink="/issues" >Issues <i class="bi bi-info-circle"></i></div>
+      <div class="nav-link" href="https://github.com/bittu1040/snippets-app" target="_blank">Contribute <i class="bi bi-github"></i></div>
 
       @if (!isLoggedIn) {
-        <a class="nav-link" routerLink="/login">Login</a>
+        <div class="nav-link" routerLink="/login">Login</div>
       }
       @if (!isLoggedIn) {
-        <a class="nav-link" routerLink="/signup">Signup</a>
+        <div class="nav-link" routerLink="/signup">Signup</div>
       }
       @if (isLoggedIn) {
-        <a class="nav-link" (click)="openLogoutDialog()">Logout</a>
+        <div class="nav-link" (click)="openLogoutDialog()">Logout</div>
       }
     </div>
   </div>
