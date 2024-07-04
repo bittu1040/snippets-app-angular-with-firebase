@@ -4,6 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { DataService } from '../../services/data.service';
+import { Issue } from '../../shared/issues';
 
 @Component({
   selector: 'app-add-issues',
@@ -15,8 +17,10 @@ import {MatSelectModule} from '@angular/material/select';
 export class AddIssuesComponent {
 
   addIssueForm: FormGroup = new FormGroup({});
+  issues: Issue[] = [];
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<AddIssuesComponent>){
+
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<AddIssuesComponent>, private data: DataService) {
 
   }
 
@@ -32,9 +36,14 @@ export class AddIssuesComponent {
   onSubmit() {
     if (this.addIssueForm.valid) {
       console.log(this.addIssueForm.value);
+      this.data.addIssue(this.addIssueForm.value).subscribe(issue => {
+        this.issues.push(issue);
+        this.addIssueForm.reset();
+    });
       this.dialogRef.close(this.addIssueForm.value);
     }
   }
+
 
   onCancelClick() {
     this.dialogRef.close();

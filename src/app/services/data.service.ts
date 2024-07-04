@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, take, throwError } from 'rxjs';
 import { Image } from '../models/image.model';
+import { Issue } from '../shared/issues';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,16 @@ export class DataService {
       map(images => images.slice(0, 100)),
       catchError(this.handleError)
     )
+  }
+
+  getAllIssues(): Observable<any> {
+    return this.http.get<Issue[]>('https://backend-node-kappa.vercel.app/api/getAllissues').pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  addIssue(issue: Issue): Observable<Issue> {
+    return this.http.post<Issue>('https://backend-node-kappa.vercel.app/api/postIssue', issue);
   }
 
   // https://picsum.photos/v2/list

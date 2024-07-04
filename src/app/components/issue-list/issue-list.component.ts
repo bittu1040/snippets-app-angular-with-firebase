@@ -5,6 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { Issue, Issues } from '../../shared/issues';
 import { AddIssuesComponent } from '../add-issues/add-issues.component';
+import { HttpClient } from '@angular/common/http';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-issue-list',
@@ -19,9 +21,23 @@ export class IssueListComponent implements OnInit{
   bugs: Issue[] = [];
   readonly dialog = inject(MatDialog);
 
+  constructor(private data: DataService) {
+    
+  }
+
   ngOnInit(): void {
-    this.features = Issues.filter((issue) => issue.issueType === "Feature");
-    this.bugs = Issues.filter((issue) => issue.issueType === "Bug");
+    // this.features = Issues.filter((issue) => issue.issueType === "Feature");
+    // this.bugs = Issues.filter((issue) => issue.issueType === "Bug");
+
+    this.data.getAllIssues().subscribe({
+      next: (data: any) => {
+        this.features= data.filter((issue: Issue) => issue.issueType === "Feature");
+        this.bugs = data.filter((issue: Issue) => issue.issueType === "Bug");
+      },
+      error: (err) => {
+        console.log("error fetching details", err)
+      }
+    })
   }
   openAddIssueDialog() {
     const dialogRef = this.dialog.open(AddIssuesComponent);
