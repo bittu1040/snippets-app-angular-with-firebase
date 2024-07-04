@@ -33,7 +33,7 @@
       <textarea matInput id="issueDescription" formControlName="issueDescription"></textarea>
     </mat-form-field>
     <mat-dialog-actions>
-        <button mat-raised-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button mat-dialog-close (click)="onCancelClick()">Cancel</button>
         <button mat-raised-button color="primary" type="submit" [disabled]="addIssueForm.invalid">Submit</button>
     </mat-dialog-actions>
   </form>

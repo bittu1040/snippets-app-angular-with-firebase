@@ -36,5 +36,8 @@ export class AddIssuesComponent {
     }
   }
 
+  onCancelClick() {
+    this.dialogRef.close();
+  }
 
 }
