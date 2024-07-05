@@ -17,7 +17,6 @@ import { Issue } from '../../shared/issues';
 export class AddIssuesComponent {
 
   addIssueForm: FormGroup = new FormGroup({});
-  issues: Issue[] = [];
 
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<AddIssuesComponent>, private data: DataService) {
@@ -37,7 +36,7 @@ export class AddIssuesComponent {
     if (this.addIssueForm.valid) {
       console.log(this.addIssueForm.value);
       this.data.addIssue(this.addIssueForm.value).subscribe(issue => {
-        this.issues.push(issue);
+        this.data.allIssuesSubject.next(issue);
         this.addIssueForm.reset();
     });
       this.dialogRef.close(this.addIssueForm.value);

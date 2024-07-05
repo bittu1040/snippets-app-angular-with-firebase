@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, take, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, take, throwError } from 'rxjs';
 import { Image } from '../models/image.model';
 import { Issue } from '../shared/issues';
 
@@ -8,6 +8,8 @@ import { Issue } from '../shared/issues';
   providedIn: 'root'
 })
 export class DataService {
+
+allIssuesSubject= new BehaviorSubject<any>([]);
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +32,9 @@ export class DataService {
   }
 
   addIssue(issue: Issue): Observable<Issue> {
-    return this.http.post<Issue>('https://backend-node-kappa.vercel.app/api/postIssue', issue);
+    return this.http.post<Issue>('https://backend-node-kappa.vercel.app/api/postIssue', issue).pipe(
+      catchError(this.handleError)
+    )
   }
 
   // https://picsum.photos/v2/list

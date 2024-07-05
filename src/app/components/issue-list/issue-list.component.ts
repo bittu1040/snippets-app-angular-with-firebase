@@ -5,7 +5,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { Issue, Issues } from '../../shared/issues';
 import { AddIssuesComponent } from '../add-issues/add-issues.component';
-import { HttpClient } from '@angular/common/http';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -29,6 +28,18 @@ export class IssueListComponent implements OnInit{
     // this.features = Issues.filter((issue) => issue.issueType === "Feature");
     // this.bugs = Issues.filter((issue) => issue.issueType === "Bug");
 
+    this.getAllIssues();
+
+    this.data.allIssuesSubject.subscribe((newIssue: Issue) => {
+      if (newIssue.issueType === 'Feature') {
+        this.features.push(newIssue);
+      } else if (newIssue.issueType === 'Bug') {
+        this.bugs.push(newIssue);
+      }
+    });
+  }
+
+  getAllIssues() {
     this.data.getAllIssues().subscribe({
       next: (data: any) => {
         this.features= data.filter((issue: Issue) => issue.issueType === "Feature");
