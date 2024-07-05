@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center">
             <h2>TODO Issues: Features/bugs</h2>
-            <button mat-raised-button (click)="openAddIssueDialog()">Post Issue <i class="bi bi-plus-circle"></i></button>
+            <button mat-raised-button (click)="openAddIssueDialog()">Post Issue <i
+                    class="bi bi-plus-circle"></i></button>
         </div>
     </div>
     <div class="row mt-2">
@@ -10,15 +11,15 @@
             <mat-card class="p-2">
                 <mat-card-header>
                     <mat-card-title>Features</mat-card-title>
-                </mat-card-header>                
+                </mat-card-header>
                 <ul>
                     @for (issue of features; track issue.userName) {
-                        <div class="text-alignment">
-                    <li>{{issue.issue}}</li>
-                    <button mat-icon-button color="warn" (click)="deleteIssue(issue._id)">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                      </div>    
+                    <div class="issue-content">
+                        <li class="issue-item">{{issue.issue}}</li>
+                        <button mat-icon-button color="warn" class="small-icon-button" (click)="deleteIssue(issue._id)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                     } @empty {
                     <li>No issues listed</li>
                     }
@@ -26,14 +27,15 @@
 
                 <mat-card-header>
                     <mat-card-title>Bugs</mat-card-title>
-                </mat-card-header>                <ul>
+                </mat-card-header>
+                <ul>
                     @for (issue of bugs; track issue.userName) {
-                        <div class="text-alignment">
-                    <li>{{issue.issue}}</li>
-                    <button mat-icon-button color="warn" (click)="deleteIssue(issue._id)">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                      </div>
+                    <div class="issue-content">
+                        <li class="issue-item">{{issue.issue}}</li>
+                        <button mat-icon-button color="warn" class="small-icon-button" (click)="deleteIssue(issue._id)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                     } @empty {
                     <li>No issues listed</li>
                     }

@@ -133,5 +133,18 @@ export interface Issue{
 //         issueType: 'Bug',
 //         issue: 'Issue 6: Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
 //         issueDescription: 'Issue 6: Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quidem.'
-//     }
+//     },
+//     {
+//         userName: 'Bittu',
+//         issueType: 'Bug',
+//         issue: 'Issue 6: when i hover into delete button, issue should be highlighted with red color.',
+//         issueDescription: 'Issue 6: Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quidem.'
+//     },
+//     {
+//         userName: 'Bittu',
+//         issueType: 'Bug',
+//         issue: 'Issue 6: Issue should have maximum 50 characters and description should have maximum 100 characters.',
+//         issueDescription: 'Issue 6: Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quidem.'
+//     },
+
 // ];
