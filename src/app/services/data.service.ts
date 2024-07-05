@@ -43,6 +43,19 @@ allIssuesSubject= new BehaviorSubject<any>([]);
     );
   }
 
+  downloadImage(url: string, fileName: string){
+    return this.http.get(url, {responseType: 'blob'}).pipe(
+      take(1),
+      map((blob: Blob) => {
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   // https://picsum.photos/v2/list
 
   // simulate client side and server side error (TODO)

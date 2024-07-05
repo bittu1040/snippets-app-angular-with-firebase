@@ -2,8 +2,14 @@
     <div class="row">
         <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center">
             <h2>TODO Issues: Features/bugs</h2>
-            <button mat-raised-button (click)="openAddIssueDialog()">Post Issue <i
-                    class="bi bi-plus-circle"></i></button>
+            <div>
+                <button title="Refresh features and issues data." mat-raised-button (click)="refreshData()"
+                    [disabled]="isLoading">
+                    Refresh <i class="bi bi-arrow-clockwise"></i>
+                </button>
+                <button mat-raised-button (click)="openAddIssueDialog()" class="ms-3">Post Issue <i
+                        class="bi bi-plus-circle"></i></button>
+            </div>
         </div>
     </div>
     <div class="row mt-2">
@@ -11,6 +17,9 @@
             <mat-card class="p-2">
                 <mat-card-header>
                     <mat-card-title>Features</mat-card-title>
+                    @if(features && features.length > 0) {
+                        <span class="mat-mdc-card-title"> &nbsp;({{ features.length }})</span>
+                    }
                 </mat-card-header>
                 <ul>
                     @for (issue of features; track issue.userName) {
@@ -21,12 +30,23 @@
                         </button>
                     </div>
                     } @empty {
-                    <li>No issues listed</li>
+                    @if(!features){
+                    <div class="text-center">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <div class="spinner-border" role="status"></div>
+                        </div>
+                    </div>
+                    } @else {
+                    <li>No features listed</li>
+                    }
                     }
                 </ul>
-
+                <hr>
                 <mat-card-header>
                     <mat-card-title>Bugs</mat-card-title>
+                    @if(bugs && bugs.length > 0) {
+                        <span class="mat-mdc-card-title"> &nbsp;({{ bugs.length }})</span>
+                    }
                 </mat-card-header>
                 <ul>
                     @for (issue of bugs; track issue.userName) {
@@ -37,7 +57,15 @@
                         </button>
                     </div>
                     } @empty {
+                    @if(!bugs){
+                    <div class="text-center">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <div class="spinner-border" role="status"></div>
+                        </div>
+                    </div>
+                    } @else {
                     <li>No issues listed</li>
+                    }
                     }
                 </ul>
             </mat-card>
