@@ -22,7 +22,8 @@
     <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 p-2">
       <div class="card">
         <div class="card-img-top-container">
-          <img [ngSrc]="snippet.download_url" alt="Image" class="card-img-top" height="300" width="100" (load)="onImageLoad(snippet)">
+          <img [ngSrc]="snippet.download_url" alt="Image" class="card-img-top" height="300" width="100"
+            (load)="onImageLoad(snippet)">
           @if(snippet.isLoading) {
           <div class="spinner-container">
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -34,15 +35,15 @@
             <h3 class="card-title mb-0">{{ snippet.author }}</h3>
             <div class="d-flex gap-2">
               <button matTooltip="Like" class="btn btn-outline-secondary p-2 rounded-circle">
-                <i class="bi bi-arrow-up"></i>
+                <i class="bi bi-hand-thumbs-up"></i>
               </button>
               <button matTooltip="Dislike" class="btn btn-outline-secondary p-2 rounded-circle">
-                <i class="bi bi-arrow-down"></i>
+                <i class="bi bi-hand-thumbs-down"></i>
               </button>
             </div>
           </div>
-          <button matTooltip="Download" class="btn btn-outline-secondary p-2 rounded">
-            <i class="bi bi-box-arrow-down"></i>
+          <button matTooltip="Download" class="btn btn-outline-secondary p-2 rounded" (click)="downloadSnippet(snippet)">
+            <i class="bi bi-download"></i>
           </button>
         </div>
       </div>
