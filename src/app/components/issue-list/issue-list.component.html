@@ -18,12 +18,12 @@
                 <mat-card-header>
                     <mat-card-title>Features</mat-card-title>
                     @if(features && features.length > 0) {
-                        <span class="mat-mdc-card-title"> &nbsp;({{ features.length }})</span>
+                    <span class="mat-mdc-card-title"> &nbsp;({{ features.length }})</span>
                     }
                 </mat-card-header>
                 <ul>
                     @for (issue of features; track issue.userName) {
-                    <div class="issue-content">
+                    <div class="issue-content mt-1">
                         <li class="issue-item">{{issue.issue}}</li>
                         <button mat-icon-button color="warn" class="small-icon-button" (click)="deleteIssue(issue._id)">
                             <i class="bi bi-trash"></i>
@@ -45,12 +45,12 @@
                 <mat-card-header>
                     <mat-card-title>Bugs</mat-card-title>
                     @if(bugs && bugs.length > 0) {
-                        <span class="mat-mdc-card-title"> &nbsp;({{ bugs.length }})</span>
+                    <span class="mat-mdc-card-title"> &nbsp;({{ bugs.length }})</span>
                     }
                 </mat-card-header>
                 <ul>
                     @for (issue of bugs; track issue.userName) {
-                    <div class="issue-content">
+                    <div class="issue-content mt-1">
                         <li class="issue-item">{{issue.issue}}</li>
                         <button mat-icon-button color="warn" class="small-icon-button" (click)="deleteIssue(issue._id)">
                             <i class="bi bi-trash"></i>
@@ -71,5 +71,6 @@
             </mat-card>
         </div>
     </div>
-
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-clip-rotate" name="issueData">
+    </ngx-spinner>
 </div>
