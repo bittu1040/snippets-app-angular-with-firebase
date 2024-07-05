@@ -10,9 +10,15 @@
             <mat-card class="p-2">
                 <mat-card-header>
                     <mat-card-title>Features</mat-card-title>
-                </mat-card-header>                <ul>
+                </mat-card-header>                
+                <ul>
                     @for (issue of features; track issue.userName) {
+                        <div class="text-alignment">
                     <li>{{issue.issue}}</li>
+                    <button mat-icon-button color="warn" (click)="deleteIssue(issue._id)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      </div>    
                     } @empty {
                     <li>No issues listed</li>
                     }
@@ -22,7 +28,12 @@
                     <mat-card-title>Bugs</mat-card-title>
                 </mat-card-header>                <ul>
                     @for (issue of bugs; track issue.userName) {
+                        <div class="text-alignment">
                     <li>{{issue.issue}}</li>
+                    <button mat-icon-button color="warn" (click)="deleteIssue(issue._id)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      </div>
                     } @empty {
                     <li>No issues listed</li>
                     }

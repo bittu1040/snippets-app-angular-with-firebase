@@ -37,6 +37,12 @@ allIssuesSubject= new BehaviorSubject<any>([]);
     )
   }
 
+  deleteIssue(id: string): Observable<void> {
+    return this.http.delete<void>(`https://backend-node-kappa.vercel.app/api/deleteIssue/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   // https://picsum.photos/v2/list
 
   // simulate client side and server side error (TODO)

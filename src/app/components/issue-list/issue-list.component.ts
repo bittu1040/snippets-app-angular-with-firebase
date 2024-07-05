@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
-import { Issue, Issues } from '../../shared/issues';
+import { Issue } from '../../shared/issues';
 import { AddIssuesComponent } from '../add-issues/add-issues.component';
 import { DataService } from '../../services/data.service';
 
@@ -30,13 +30,13 @@ export class IssueListComponent implements OnInit{
 
     this.getAllIssues();
 
-    this.data.allIssuesSubject.subscribe((newIssue: Issue) => {
-      if (newIssue.issueType === 'Feature') {
-        this.features.push(newIssue);
-      } else if (newIssue.issueType === 'Bug') {
-        this.bugs.push(newIssue);
-      }
-    });
+    // this.data.allIssuesSubject.subscribe((newIssue: Issue) => {
+    //   if (newIssue.issueType === 'Feature') {
+    //     this.features.push(newIssue);
+    //   } else if (newIssue.issueType === 'Bug') {
+    //     this.bugs.push(newIssue);
+    //   }
+    // });
   }
 
   getAllIssues() {
@@ -54,8 +54,14 @@ export class IssueListComponent implements OnInit{
     const dialogRef = this.dialog.open(AddIssuesComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // console.log(result)
+        this.getAllIssues();
       }
+    });
+  }
+
+  deleteIssue(id: string): void {
+    this.data.deleteIssue(id).subscribe(() => {
+      this.getAllIssues();
     });
   }
 
