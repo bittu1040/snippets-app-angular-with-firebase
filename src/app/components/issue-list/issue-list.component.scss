@@ -1,24 +1,29 @@
-ul{
-    line-height: 2;
-    font-size: 1rem;
+ul {
+  line-height: 2;
+  font-size: 1rem;
 }
 
 .issue-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 .small-icon-button {
-    width: 24px; /* Adjust the size as needed */
-    height: 24px; /* Adjust the size as needed */
-    font-size: 24px; /* Adjust the size of the icon if needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 24px; /* Adjust the size as needed */
+  height: 24px; /* Adjust the size as needed */
+  font-size: 24px; /* Adjust the size of the icon if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .small-icon-button i {
-    font-size: 24px; /* Adjust the size of the icon if needed */
+  font-size: 24px; /* Adjust the size of the icon if needed */
+}
+
+.issue-content:hover {
+    background-color: rgba(255, 0, 0, 0.1);
 }

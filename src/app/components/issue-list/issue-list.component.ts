@@ -6,14 +6,26 @@ import { MatDividerModule } from '@angular/material/divider';
 import { Issue } from '../../shared/issues';
 import { AddIssuesComponent } from '../add-issues/add-issues.component';
 import { DataService } from '../../services/data.service';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { delay, tap } from 'rxjs';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-issue-list',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatCardModule, MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    NgxSpinnerModule,
+    CommonModule
+  ],
   templateUrl: './issue-list.component.html',
   styleUrl: './issue-list.component.scss',
 })
@@ -22,8 +34,9 @@ export class IssueListComponent implements OnInit {
   bugs: Issue[] | null = null;
   isLoading: boolean = true;
   readonly dialog = inject(MatDialog);
+  isHovered: boolean = false;
 
-  constructor(private data: DataService, private snackBar: MatSnackBar) {}
+  constructor(private data: DataService, private snackBar: MatSnackBar, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
     // this.features = Issues.filter((issue) => issue.issueType === "Feature");
@@ -41,25 +54,28 @@ export class IssueListComponent implements OnInit {
   }
 
   getAllIssues() {
-    this.data.getAllIssues()
-    .pipe(
-      tap(() => this.isLoading = false)
-    ).subscribe({
-      next: (data: any) => {
-        this.features = data.filter(
-          (issue: Issue) => issue.issueType === 'Feature'
-        );
-        this.bugs = data.filter((issue: Issue) => issue.issueType === 'Bug');
-      },
-      error: (err) => {
-        this.snackBar.open("Error fetching details", "Ok", {
-          duration: 10000
-        });
-        console.log('error fetching details', err);
-        this.features = [];
-        this.bugs = [];
-      },
-    });
+    this.data
+      .getAllIssues()
+      .pipe(tap(() => {
+        this.isLoading = false;
+        this.spinner.hide('issueData');
+      }))
+      .subscribe({
+        next: (data: any) => {
+          this.features = data.filter(
+            (issue: Issue) => issue.issueType === 'Feature'
+          );
+          this.bugs = data.filter((issue: Issue) => issue.issueType === 'Bug');
+        },
+        error: (err) => {
+          this.snackBar.open('Error fetching details', 'Ok', {
+            duration: 10000,
+          });
+          console.log('error fetching details', err);
+          this.features = [];
+          this.bugs = [];
+        },
+      });
   }
   
   openAddIssueDialog() {
@@ -72,12 +88,13 @@ export class IssueListComponent implements OnInit {
   }
 
   deleteIssue(id: string): void {
+    this.spinner.show('issueData');
     this.data.deleteIssue(id).subscribe(() => {
       this.getAllIssues();
     });
   }
 
-  refreshData(){
+  refreshData() {
     this.isLoading = true;
     this.getAllIssues();
   }

@@ -3,42 +3,43 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, take, throwError } from 'rxjs';
 import { Image } from '../models/image.model';
 import { Issue } from '../shared/issues';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-allIssuesSubject= new BehaviorSubject<any>([]);
+  allIssuesSubject= new BehaviorSubject<any>([]);
 
+  private _apiUrl = "https://backend-node-kappa.vercel.app";
   constructor(private http: HttpClient) { }
-
 
   getImage():Observable<Image[]>{
     const header= new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'my-auth-token'
     });
-    return this.http.get<Image[]>("https://backend-node-kappa.vercel.app/get_image_info", {headers: header}).pipe( 
+    return this.http.get<Image[]>(`${this._apiUrl}/get_image_info`, {headers: header}).pipe( 
       map(images => images.slice(0, 100)),
       catchError(this.handleError)
     )
   }
 
   getAllIssues(): Observable<any> {
-    return this.http.get<Issue[]>('https://backend-node-kappa.vercel.app/api/getAllissues').pipe(
+    return this.http.get<Issue[]>(`${this._apiUrl}/api/getAllissues`).pipe(
       catchError(this.handleError)
     )
   }
 
   addIssue(issue: Issue): Observable<Issue> {
-    return this.http.post<Issue>('https://backend-node-kappa.vercel.app/api/postIssue', issue).pipe(
+    return this.http.post<Issue>(`${this._apiUrl}/api/postIssue`, issue).pipe(
       catchError(this.handleError)
     )
   }
 
   deleteIssue(id: string): Observable<void> {
-    return this.http.delete<void>(`https://backend-node-kappa.vercel.app/api/deleteIssue/${id}`).pipe(
+    return this.http.delete<void>(`${this._apiUrl}/api/deleteIssue/${id}`).pipe(
       catchError(this.handleError)
     );
   }
