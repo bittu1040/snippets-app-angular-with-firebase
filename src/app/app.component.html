@@ -1,36 +1,12 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary px-3">
-  <div class="navbar-brand fw-bold nav-link" routerLink="/home">Home</div>
-  <div class="navbar-brand fw-bold nav-link" routerLink="/upload-snippets">Upload Snippets</div>
-
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class="navbar-nav ms-auto mb-2 mb-sm-0">
-      <div class="nav-link" routerLink="/issues" >Issues <i class="bi bi-info-circle"></i></div>
-      <a class="nav-link" href="https://github.com/bittu1040/snippets-app" target="_blank">Contribute <i class="bi bi-github"></i></a>
-      
-      @if (!isLoggedIn) {
-        <div class="nav-link" routerLink="/login">Login</div>
-      }
-      @if (!isLoggedIn) {
-        <div class="nav-link" routerLink="/signup">Signup</div>
-      }
-      @if (isLoggedIn) {
-        <div class="nav-link" (click)="openLogoutDialog()">Logout</div>
-      }
-    </div>
-  </div>
-</nav>
-
-<div class="container mt-3">
+<app-sidebar />
+<div class="main-container">
   <router-outlet></router-outlet>
 </div>
+<ng-toast class="snippet-toaster" [position]="ToasterPosition.TOP_RIGHT" />
 
 
 
-<!-- 
+<!--
   Frontend:
   1. try for simple loader of api call till the response comes.
   2. spinner for loading time of image
@@ -43,7 +19,7 @@
   8. Print username in top after successful loggedin
   9. add simple http interceptor for sending auth token  (try with all different cases)
                   write medium article on this: https://medium.com/@mohsinogen/angular-17-http-interceptors-guide-417e7c8ffada
-  10.                 
+  10.
 
 
 

@@ -1,38 +1,38 @@
-<div class="form-container">
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" formControlName="email" required>
+<div class="auth-wrapper pt-5">
+  <mat-card class="signup-card">
+    <mat-card-header>
+      <mat-card-title class="mb-3">Sign Up</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required>
           @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
-            <div class="text-danger mt-2">
-              Valid email is required.
-            </div>
+          <mat-error>Valid email is required.</mat-error>
           }
-        </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" class="form-control" id="password" formControlName="password" required>
-          @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
-            <div class="text-danger mt-2">
-            Password should be at least 6 characters.
-            </div>
-          }
-        </div>
-        <div class="form-group">
-          <label for="confirm-password">Confirm password:</label>
-          <input type="password" class="form-control" id="confirm-password" formControlName="confirmPassword" required>
-          @if (signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched) {
-            <div class="text-danger mt-2">
-               Passwords do not match.
-            </div>
-          }
-        </div>
-        <button type="submit" class="btn btn-primary mt-2" [disabled]="signupForm.invalid">Sign up</button>
-      </form>
-</div>
+        </mat-form-field>
 
-@if (signupError) {
-    <div class="form-container mt-2 error-message">
-         <div>{{signupError}}</div>
-    </div>
-}
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" required>
+          @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
+          <mat-error>Password should be at least 6 characters.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" formControlName="confirmPassword" required>
+          @if (signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched) {
+          <mat-error>Passwords do not match.</mat-error>
+          }
+        </mat-form-field>
+
+        <button class="w-100" mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
+          Sign Up
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

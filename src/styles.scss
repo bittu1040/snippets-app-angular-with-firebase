@@ -2,3 +2,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.snippet-toaster .toast-message {
+  padding: 0.6rem !important;
+  .gap-3{
+    gap: 0.6rem !important;
+  }
+}
+
+.auth-wrapper {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}

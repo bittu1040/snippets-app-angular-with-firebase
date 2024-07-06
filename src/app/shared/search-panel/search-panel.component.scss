@@ -1,0 +1,43 @@
+.jumbotron {
+  background: linear-gradient(135deg, #FFA500, #4A90E2, #9B4DCA);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.search-container {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #9b4dca;
+  font-size: 1.2em;
+  cursor: pointer;
+}
