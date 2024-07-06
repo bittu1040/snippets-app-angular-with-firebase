@@ -1,0 +1,63 @@
+<div class="sidebar">
+  <div class="sidebar-content">
+    <div class="logo-container">
+      <img src="assets/images/snippet-logo.png" alt="logo" width="120" height="100">
+      <h3>Code Snippet</h3>
+    </div>
+    <hr>
+    <nav class="menu">
+      <a routerLink="/home" class="menu-item" routerLinkActive="active">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-house"></i>
+          <h2>Home</h2>
+        </div>
+      </a>
+      @if (isLoggedIn | async) {
+      <a routerLink="/upload-snippets" class="menu-item" routerLinkActive="active">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-upload"></i>
+          <h2>Upload</h2>
+        </div>
+      </a>
+      }
+
+      @if (!(isLoggedIn | async)) {
+      <a routerLink="/login" class="menu-item" routerLinkActive="active">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-box-arrow-in-left"></i>
+          <h2>Sign in</h2>
+        </div>
+
+      </a>
+      <a routerLink="/signup" class="menu-item" routerLinkActive="active">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-check-square"></i>
+          <h2>Sign up</h2>
+        </div>
+      </a>
+      }
+      <a routerLink="/issues" class="menu-item" routerLinkActive="active">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-info-circle"></i>
+          <h2>Issue</h2>
+        </div>
+      </a>
+      <a href="https://github.com/bittu1040/snippets-app-angular-with-firebase" target="_blank" class="menu-item">
+
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-github"></i>
+          <h2>Contribute</h2>
+        </div>
+      </a>
+    </nav>
+    @if (isLoggedIn | async) {
+    <div class="profile-section">
+      <div class="profile-card">
+        <img src="assets/images/user.png" alt="user" width="60" height="60">
+        <p>Sashikumar Dev</p>
+      </div>
+      <button class="upgrade-button">Logout</button>
+    </div>
+    }
+  </div>
+</div>
