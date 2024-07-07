@@ -60,6 +60,11 @@ export class HomeComponent implements OnInit {
         this.error = err;
       },
     });
+
+    this.data.searchInput.subscribe((searchTerm) => {
+      console.log('search term', searchTerm);
+      this.searchTerm = searchTerm;
+    });
   }
 
   get filteredTopics() {

@@ -2,7 +2,7 @@
   <h1>Browse All Snippets</h1>
   <p>What would you like to learn today?</p>
   <div class="search-container">
-    <input type="text" placeholder="Search" class="search-input">
+    <input type="text" placeholder="Search" class="search-input" (input)="getSearchInputData($event)">
     <button class="search-button">
       <i class="fa fa-search"></i>
     </button>

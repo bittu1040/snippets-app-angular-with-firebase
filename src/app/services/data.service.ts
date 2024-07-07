@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
 export class DataService {
 
   allIssuesSubject= new BehaviorSubject<any>([]);
+  searchInput = new BehaviorSubject<string>('');
 
   private _apiUrl = "https://backend-node-kappa.vercel.app";
   constructor(private http: HttpClient) { }
