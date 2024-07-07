@@ -12,16 +12,16 @@
           <h2>Home</h2>
         </div>
       </a>
-      @if (isLoggedIn | async) {
+      <!-- @if (isLoggedIn ) { -->
       <a routerLink="/upload-snippets" class="menu-item" routerLinkActive="active">
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-upload"></i>
           <h2>Upload</h2>
         </div>
       </a>
-      }
+      <!-- } -->
 
-      @if (!(isLoggedIn | async)) {
+      @if (!(isLoggedIn)) {
       <a routerLink="/login" class="menu-item" routerLinkActive="active">
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-box-arrow-in-left"></i>
@@ -50,7 +50,7 @@
         </div>
       </a>
     </nav>
-    @if (isLoggedIn | async) {
+    @if (isLoggedIn) {
     <div class="profile-section">
       <div class="profile-card">
         <img src="assets/images/user.png" alt="user" width="60" height="60">

@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         this.toastService.success('Login successful', 'LOGIN SUCCESS');
         this.router.navigateByUrl('/home');
         localStorage.setItem('isLoggedIn', 'true');
-        this.firebaseAuth.isLoggedIn.next(true);
+        this.firebaseAuth.isLoggedInSubject.next(true);
       })
       .catch(({ code }) => {
         this.loginError = this.getErrorMessage(code);

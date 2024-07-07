@@ -42,9 +42,9 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.firebaseAuthService.isLoggedIn.subscribe((res) => {
-      this.isLoggedIn = res;
-    });
+    // this.firebaseAuthService.isLoggedIn.subscribe((res) => {
+    //   this.isLoggedIn = res;
+    // });
   }
 
   openDialog() {

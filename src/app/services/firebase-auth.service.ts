@@ -9,7 +9,7 @@ export class FirebaseAuthService {
 
 
   currentUser: any; // To store the currently logged-in user
-  isLoggedIn= new BehaviorSubject(false)
+  isLoggedInSubject = new BehaviorSubject<boolean>(false);
 
   constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
@@ -28,6 +28,11 @@ export class FirebaseAuthService {
   logout() {
     localStorage.removeItem('isLoggedIn');
     return this.afAuth.signOut(); 
+  }
+
+  checkAuthStatus() {
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    this.isLoggedInSubject.next(loggedIn);
   }
 
   // isLoggedIn() {

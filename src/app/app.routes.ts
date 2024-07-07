@@ -11,7 +11,7 @@ export const routes: Routes = [
     {path: "", redirectTo:"/home", pathMatch: "full"},
     {path: "home", component: HomeComponent},
     {path: "upload-snippets", component: UploadSnippetsComponent, canActivate: [authGuard]},
-    {path: "login", component: LoginComponent},
+    {path: "login", component: LoginComponent, canActivate: [authGuard]},
     {path: "signup", component: SignupComponent},
     { path: 'login-redirect', component: LoginRedirectsComponent },
     { path: 'issues', component: IssueListComponent }
