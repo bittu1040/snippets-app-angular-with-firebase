@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class SidebarService {
-  sidebarState = new BehaviorSubject<boolean>(false);
+  sidebarState = new BehaviorSubject<boolean>(true);
 
   toggleSidebar() {
     this.sidebarState.next(!this.sidebarState.value);
