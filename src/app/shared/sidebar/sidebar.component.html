@@ -1,3 +1,14 @@
+@if (isSmallDevice()) {
+  <header>
+    @if (isSidebarVisible()) {
+    <i (click)="toggle()" class="bi bi-x-lg cross"></i>
+    } @else {
+    <i (click)="toggle()" class="bi bi-list bars"></i>
+    }
+  </header>
+  }
+@if (isSidebarVisible()) {
+
 <div class="sidebar">
   <div class="sidebar-content">
     <div class="logo-container">
@@ -6,14 +17,14 @@
     </div>
     <hr>
     <nav class="menu">
-      <a routerLink="/home" class="menu-item" routerLinkActive="active">
+      <a (click)="route('/home')" class="menu-item" routerLinkActive="active">
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-house"></i>
           <h2>Home</h2>
         </div>
       </a>
       <!-- @if (isLoggedIn ) { -->
-      <a routerLink="/upload-snippets" class="menu-item" routerLinkActive="active">
+      <a (click)="route('/upload-snippets')" class="menu-item" routerLinkActive="active">
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-upload"></i>
           <h2>Upload</h2>
@@ -22,27 +33,28 @@
       <!-- } -->
 
       @if (!(isLoggedIn)) {
-      <a routerLink="/login" class="menu-item" routerLinkActive="active">
+      <a (click)="route('/login')" class="menu-item" routerLinkActive="active">
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-box-arrow-in-left"></i>
           <h2>Sign in</h2>
         </div>
 
       </a>
-      <a routerLink="/signup" class="menu-item" routerLinkActive="active">
+      <a (click)="route('/signup')" class="menu-item" routerLinkActive="active">
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-check-square"></i>
           <h2>Sign up</h2>
         </div>
       </a>
       }
-      <a routerLink="/issues" class="menu-item" routerLinkActive="active">
+      <a (click)="route('/issues')" class="menu-item" routerLinkActive="active">
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-info-circle"></i>
           <h2>Issue</h2>
         </div>
       </a>
-      <a href="https://github.com/bittu1040/snippets-app-angular-with-firebase" target="_blank" class="menu-item">
+      <a rel="noopener noreferrer" href="https://github.com/bittu1040/snippets-app-angular-with-firebase" target="_blank"
+        class="menu-item">
 
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-github"></i>
@@ -61,3 +73,4 @@
     }
   </div>
 </div>
+}

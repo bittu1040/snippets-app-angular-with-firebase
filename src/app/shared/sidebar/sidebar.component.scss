@@ -2,15 +2,32 @@
   width: 256px;
   height: 100vh;
   position: fixed;
-  display: none;
-  z-index: 999;
+  display: block;
+  z-index: 10;
+}
+header {
+  background: linear-gradient(135deg, #ffa500, #4a90e2, #9b4dca);
+  height: 75px;
 }
 
-@media (min-width: 768px) {
-  .sidebar {
-    display: block;
-  }
+.cross {
+  position: absolute;
+  z-index: 99;
+  font-size: 2rem;
+  margin-left: 1rem;
+  top: 1rem;
+  color: #ffffff;
 }
+
+.bars {
+  position: absolute;
+  top: 1rem;
+  margin-left: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
 
 .sidebar-content {
   height: 100%;
