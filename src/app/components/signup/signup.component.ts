@@ -67,7 +67,20 @@ export class SignupComponent {
   ): ValidationErrors | null => {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-    return password?.value !== confirmPassword?.value ? {passwordMismatch: true} : null;
+
+    // return null if password is invalid
+    if(password?.invalid) return null;
+
+    // check if password/confirmed password mached
+    // if not matched then return error
+    // else return null
+    if (password?.value !== confirmPassword?.value) {
+      confirmPassword?.setErrors({ passwordMismatch: true });
+      return { passwordMismatch: true };
+    }
+
+    confirmPassword?.setErrors(null);
+    return null;
   };
 
   onSubmit() {
