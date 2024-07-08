@@ -2,13 +2,16 @@
 
 
 @if (error ) {
-<div class="col-12">
-  <div class="error">
-    <div>Error message: {{error.message}}</div>
-    <div>Error status: {{error.status}}</div>
-    <div>Error statusText: {{error.statusText}}</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div>Error message: {{error.message}}</div>
+      <div>Error status: {{error.status}}</div>
+      <div>Error statusText: {{error.statusText}}</div>
+    </div>
   </div>
 </div>
+
 }
 @else{
 
@@ -37,7 +40,8 @@
                 <mat-icon>thumb_down</mat-icon>
               </button>
             </div>
-            <button mat-icon-button matTooltip="Download" matTooltipPosition="above" color="accent" (click)="downloadSnippet(snippet)">
+            <button mat-icon-button matTooltip="Download" matTooltipPosition="above" color="accent"
+              (click)="downloadSnippet(snippet)">
               <mat-icon>download</mat-icon>
             </button>
           </div>
@@ -47,7 +51,13 @@
   </mat-card>
   }
   @empty {
-  Empty list of users
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        Empty list of snippets
+      </div>
+    </div>
+  </div>
   }
 </div>
 }
