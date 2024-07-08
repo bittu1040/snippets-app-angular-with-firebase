@@ -74,7 +74,11 @@ hr {
   color: inherit;
 }
 
-.menu-item:hover,
+.menu-item:hover{
+  background-color: #dbedff;
+  color: black ;
+}
+
 .menu-item.active {
   background-color: #572fc4;
   color: white;
@@ -88,14 +92,6 @@ hr {
 .menu-item h2 {
   font-size: 18px;
   margin: 0;
-}
-
-.profile-section {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  width: 100%;
-  padding: 0 20px;
 }
 
 .profile-card {

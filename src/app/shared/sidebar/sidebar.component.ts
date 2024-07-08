@@ -33,13 +33,13 @@ export class SidebarComponent implements OnInit {
       this.isLoggedIn = res;
     });
 
+    this.sidebarService.sidebarState.subscribe((res) => {
+      this.isSidebarVisible.set(res);
+    });
+
     this.deviceDetectorService.getIsSmallDevice().subscribe((res) => {
       this.isSidebarVisible.set(!res);
       this.isSmallDevice.set(res);
-    });
-
-    this.sidebarService.sidebarState.subscribe((res) => {
-      this.isSidebarVisible.set(res);
     });
   }
 
@@ -59,5 +59,12 @@ export class SidebarComponent implements OnInit {
       this.toggle();
     }
     this.router.navigate([path]);
+  }
+
+  handleNavigation(event: MouseEvent): void {
+    if (this.isSmallDevice()) {
+      event.preventDefault();
+      this.toggle();
+    }
   }
 }
