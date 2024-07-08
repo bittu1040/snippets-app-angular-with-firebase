@@ -1,7 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutDialogComponent } from '../../dialogs/logout-dialog/logout-dialog.component';
 import { DeviceDetectorService } from '../service/device-detector.service';
@@ -10,7 +10,7 @@ import { SidebarService } from '../service/sidebar.service';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, AsyncPipe],
+  imports: [RouterLink, RouterLinkActive, AsyncPipe, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })

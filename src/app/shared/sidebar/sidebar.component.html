@@ -1,10 +1,6 @@
 @if (isSmallDevice()) {
   <header>
-    @if (isSidebarVisible()) {
-    <i (click)="toggle()" class="bi bi-x-lg cross"></i>
-    } @else {
-    <i (click)="toggle()" class="bi bi-list bars"></i>
-    }
+    <i (click)="toggle()" class="bi" [ngClass]="isSidebarVisible() ? 'bi-x-lg cross' : 'bi-list bars'" [style.color]="isSidebarVisible() ? 'black' : 'white'"></i>
   </header>
   }
 @if (isSidebarVisible()) {

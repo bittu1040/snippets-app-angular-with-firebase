@@ -4,6 +4,7 @@
   position: fixed;
   display: block;
   z-index: 10;
+  top: 0;
 }
 header {
   background: linear-gradient(135deg, #ffa500, #4a90e2, #9b4dca);
@@ -16,7 +17,6 @@ header {
   font-size: 2rem;
   margin-left: 1rem;
   top: 1rem;
-  color: #ffffff;
 }
 
 .bars {
