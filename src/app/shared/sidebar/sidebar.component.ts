@@ -54,13 +54,6 @@ export class SidebarComponent implements OnInit {
     this.sidebarService.toggleSidebar();
   }
 
-  route(path: string) {
-    if (this.isSmallDevice()) {
-      this.toggle();
-    }
-    this.router.navigate([path]);
-  }
-
   handleNavigation(event: MouseEvent): void {
     if (this.isSmallDevice()) {
       event.preventDefault();
