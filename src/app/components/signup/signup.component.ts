@@ -4,6 +4,8 @@ import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
@@ -51,14 +53,22 @@ export class SignupComponent {
     );
   }
 
-  passwordMatchValidator(control: AbstractControl) {
+  // passwordMatchValidator(control: AbstractControl) {
+  //   const password = control.get('password');
+  //   const confirmPassword = control.get('confirmPassword');
+  //   if (password?.value !== confirmPassword?.value) {
+  //     return { mismatch: true };
+  //   }
+  //   return null;
+  // }
+
+  passwordMatchValidator: ValidatorFn = (
+    control: AbstractControl,
+  ): ValidationErrors | null => {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-    if (password?.value !== confirmPassword?.value) {
-      return { mismatch: true };
-    }
-    return null;
-  }
+    return password?.value !== confirmPassword?.value ? {passwordMismatch: true} : null;
+  };
 
   onSubmit() {
     if (this.signupForm.valid) {
