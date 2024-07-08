@@ -13,6 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchPanelComponent } from '../../shared/search-panel/search-panel.component';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +31,8 @@ import { SearchPanelComponent } from '../../shared/search-panel/search-panel.com
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    SearchPanelComponent
+    SearchPanelComponent,
+    NgxSpinnerModule
   ],
   providers: [DataService],
   templateUrl: './home.component.html',
@@ -37,17 +40,20 @@ import { SearchPanelComponent } from '../../shared/search-panel/search-panel.com
 })
 export class HomeComponent implements OnInit {
   searchTerm = '';
-  snippets: any[] = [];
+  snippets: any[] | null = null;
   error: { message: string; status: number; statusText: string } | null = null;
 
   constructor(
     private data: DataService,
-    private http: HttpClient,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
-    this.data.getImage().subscribe({
+    this.spinner.show("loadSnippets");
+    this.data.getImage()
+    .pipe(tap(() => this.spinner.hide("loadSnippets")))
+    .subscribe({
       next: (data: any) => {
         this.snippets = data.map((image: any) => ({
           ...image,
@@ -57,6 +63,7 @@ export class HomeComponent implements OnInit {
       },
       error: (err) => {
         console.log('error fetching details', err);
+        this.snippets = [];
         this.error = err;
       },
     });
@@ -68,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   get filteredTopics() {
-    return this.snippets.filter((topic: any) =>
+    return this.snippets?.filter((topic: any) =>
       topic.author.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
