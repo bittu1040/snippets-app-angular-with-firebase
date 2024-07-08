@@ -29,17 +29,17 @@
             but not working as expected with mat-error: 
             So we need to fix that in mat-error
           -->
-          <!-- @if (signupForm.hasError('passwordMismatch') && (signupForm.get('confirmPassword')?.touched)) {
+          @if (signupForm.hasError('passwordMismatch') && (signupForm.get('confirmPassword')?.touched)) {
             <mat-error>
               password is not matching
             </mat-error>
-            } -->
+            }
         </mat-form-field>
-        @if (signupForm.hasError('passwordMismatch') && (signupForm.get('confirmPassword')?.touched)) {
+        <!-- @if (signupForm.hasError('passwordMismatch') && (signupForm.get('confirmPassword')?.touched)) {
         <div class="cross-validation-error-message alert alert-danger">
           password is not matching
          </div>
-        }
+        } -->
 
         <button class="w-100" mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
           Sign Up
