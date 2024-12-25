@@ -1,10 +1,21 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {HttpClientModule} from "@angular/common/http";
+import {MatDialogRef} from "@angular/material/dialog";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {AngularFireModule} from "@angular/fire/compat";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent,  HttpClientTestingModule,
+        AngularFireModule ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} }
+      ],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
